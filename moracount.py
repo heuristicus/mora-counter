@@ -11,7 +11,8 @@ class MoraCount:
             sys.exit(0)
         else:
             # Get the characters back into the form \xx\yy\zz
-            self.sentence = filter(lambda x: x != None, [s[i:i+3] if i%3 == 0 else None for i, v in enumerate(s)])
+            base = args[0]
+            self.sentence = filter(lambda x: x != None, [base[i:i+3] if i%3 == 0 else None for i, v in enumerate(base)])
             self.check_sentence()
             self.data_init()
 
@@ -27,7 +28,7 @@ class MoraCount:
         return True
 
     def jp_check(self, char):
-        h_val = ord(char)
+        h_val = ord(char.decode('utf8'))
         # Katakana
         if h_val >= 12352 and h_val <= 12447:
             return True
